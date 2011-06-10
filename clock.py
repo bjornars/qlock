@@ -30,7 +30,7 @@ def print_time(hour, minute):
     print line 
 
     line = bold_if(4 <= t <= 5 or 7 <= t <= 8, 'T W E N T Y ')
-    line += bold_if(t == 5 or t == 7, 'F I V E ')
+    line += bold_if(t == 5 or t == 7 or t == 1 or t == 11, 'F I V E ')
     line += 'X'
     print line 
 
@@ -41,7 +41,7 @@ def print_time(hour, minute):
     line += bold_if(t > 6, 'T O ')
     print line 
 
-    line = bold_if(1 <= t < 6, 'P A S T ')
+    line = bold_if(1 <= t <= 6, 'P A S T ')
     line += 'E R U '
 
     if t >= 7:
@@ -64,15 +64,16 @@ def print_time(hour, minute):
     line += bold_if(h == 11, 'E L E V E N ');
     print line 
 
-    line = bold_if(h == 8, 'S E V E N ');
-    line += bold_if(h == 12, 'T W E L V E');
+    line = bold_if(h == 7, 'S E V E N ');
+    line += bold_if(h == 0 or h == 12, 'T W E L V E');
     print line 
 
     line = bold_if(h == 10, 'T E N ');
-    line += 'S E B '
+    line += 'S E '
     line += bold_if(am, 'A M ')
     line += 'G '
     line += bold_if(not am, 'P M ')
+    line += 'P '
     line += RESET
     print line
 
