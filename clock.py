@@ -20,7 +20,7 @@ def print_time(hour, minute):
 
     print 'TIME FOR ', h, m, t  
 
-    print RED + 'Z W O D ' + GREEN + 'I T ' + RED + 'L ' + GREEN + 'I S ' + RED +'A S'
+    print GREEN + 'I T ' + RED + 'L ' + GREEN + 'I S ' + RED + 'A S T I M E '
 
     line = ""
     line += bold_if(t == 3 or t == 9, 'A ')   
