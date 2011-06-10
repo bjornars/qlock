@@ -18,64 +18,26 @@ def print_time(hour, minute):
     m = minute
     t = m / 5
 
-    print 'TIME FOR ', h, m, t  
+    quarter = t == 3 or t == 9
+    twenty = 4 <= t <= 5 or 7 <= t <= 8
+    five = t == 5 or t == 7 or t == 1 or t == 11
+    half = t == 6
+    ten = t == 2 or t == 10
+    to = t > 6
+    past = 1 <=t <= 6
 
     print GREEN + 'I T ' + RED + 'L ' + GREEN + 'I S ' + RED + 'A S T I M E '
+    print bold_if(quarter, 'A ') + 'C ' + bold_if(quarter, 'Q U A R T E R ') + 'D C'
+    print bold_if(twenty, 'T W E N T Y ') + bold_if(five, 'F I V E ') + 'X'
+    print bold_if(half, 'H A L F ') + 'B ' + bold_if(ten, 'T E N ') + 'F ' + bold_if(to, 'T O ')
 
-    line = ""
-    line += bold_if(t == 3 or t == 9, 'A ')   
-    line +=  'C '
-    line += bold_if(t == 3 or t == 9, 'Q U A R T E R ')
-    line += 'D C'
-    print line 
-
-    line = bold_if(4 <= t <= 5 or 7 <= t <= 8, 'T W E N T Y ')
-    line += bold_if(t == 5 or t == 7 or t == 1 or t == 11, 'F I V E ')
-    line += 'X'
-    print line 
-
-    line = bold_if(t == 6, 'H A L F ')
-    line += 'B '
-    line += bold_if(t == 2 or t == 10, 'T E N ')
-    line += 'F '
-    line += bold_if(t > 6, 'T O ')
-    print line 
-
-    line = bold_if(1 <= t <= 6, 'P A S T ')
-    line += 'E R U '
-
-    if t >= 7:
-        h += 1
-
-    line += bold_if(h == 9, 'N I N E ');
-    print line 
-
-    line = bold_if(h == 1, 'O N E ');
-    line += bold_if(h == 6, 'S I X ');
-    line += bold_if(h == 3, 'T H R E E ');
-    print line
-
-    line = bold_if(h == 4, 'F O U R ');
-    line += bold_if(h == 5, 'F I V E ');
-    line += bold_if(h == 2, 'T W O ');
-    print line 
-
-    line = bold_if(h == 8, 'E I G H T ');
-    line += bold_if(h == 11, 'E L E V E N ');
-    print line 
-
-    line = bold_if(h == 7, 'S E V E N ');
-    line += bold_if(h == 0 or h == 12, 'T W E L V E');
-    print line 
-
-    line = bold_if(h == 10, 'T E N ');
-    line += 'S E '
-    line += bold_if(am, 'A M ')
-    line += 'G '
-    line += bold_if(not am, 'P M ')
-    line += 'P '
-    line += RESET
-    print line
+    if t >= 7: h += 1
+    print bold_if(past, 'P A S T ') + 'E R U ' + bold_if(h == 9, 'N I N E ')
+    print bold_if(h == 1, 'O N E ') + bold_if(h == 6, 'S I X ') + bold_if(h == 3, 'T H R E E ')
+    print bold_if(h == 4, 'F O U R ') + bold_if(h == 5, 'F I V E ') + bold_if(h == 2, 'T W O ') 
+    print bold_if(h == 8, 'E I G H T ') + bold_if(h == 11, 'E L E V E N ')
+    print bold_if(h == 7, 'S E V E N ') + bold_if(h == 0 or h == 12, 'T W E L V E')
+    print bold_if(h == 10, 'T E N ') + 'S E ' + bold_if(am, 'A M ') + 'G ' + bold_if(not am, 'P M ') + 'P ' + RESET
 
 if __name__ == '__main__':
     import sys
@@ -84,7 +46,7 @@ if __name__ == '__main__':
         m = int(sys.argv[2])
     else:
         import datetime
-        h = datetime.datetime.now().hour 
+        h = datetime.datetime.now().hour
         m = datetime.datetime.now().minute
 
     print_time(h, m)
