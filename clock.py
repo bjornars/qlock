@@ -41,12 +41,35 @@ def print_time(hour, minute):
 
 if __name__ == '__main__':
     import sys
+    continuous = False
+
+    if sys.argv[-1] == '-c':
+        del sys.argv[-1]
+        continuous = True
+
     if len(sys.argv) == 3:
         h = int(sys.argv[1])
         m = int(sys.argv[2])
     else:
         import datetime
-        h = datetime.datetime.now().hour
-        m = datetime.datetime.now().minute
+        import math
+        import time
+        while 1:
+            now = datetime.datetime.now()
+            h = now.hour
+            m = now.minute
+            if continuous: 
+                # clear and reset
+                print '\033[2J'
+                print '\033[0;0H'
 
-    print_time(h, m)
+            print_time(h, m)
+            if not continuous: 
+                break
+
+            seconds_since_hour = now.second + now.minute * 60
+
+            # wait until start of next multiple of five minutes (in case it wasn't obvious)
+            slumber = int(math.ceil(seconds_since_hour / 300.0) * 300) - seconds_since_hour
+            time.sleep(slumber)
+
